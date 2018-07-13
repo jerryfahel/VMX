@@ -1,0 +1,3 @@
+GuestName,SourceDir,DestDir,WaitStart,WaitShutdown
+VMServer0,C:\ClusterStorage\Volume2\VMServer0,\\backupstorage\VMServer0,240,240
+VMServer1,C:\ClusterStorage\Volume4\VMServer1,\\backupstorage\VMServer1,240,240
