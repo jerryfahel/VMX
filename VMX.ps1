@@ -18,7 +18,7 @@ foreach ($line in $hosts) {
 	$logfile =  $logDir
 	$logfile += Split-Path $dest -Leaf
 	$logfile += ".log"
-	$vm = gwmi -namespace root\virtualization -query "select * from msvm_computersystem where elementname='$guest'"
+	$vm = gwmi -namespace root\virtualization\v2 -query "select * from msvm_computersystem where elementname='$guest'"
 	$vmname = $vm.name
 	if(!$vmname) {
 		write-host "$guest is not hosted here" -foregroundcolor red
@@ -28,7 +28,7 @@ foreach ($line in $hosts) {
 		write-host "$guest is hosted here" -foregroundcolor green
 		write-host ""
 		write-host "$guest is shutting down"
-		$vmshut = gwmi -namespace root\virtualization -query "SELECT * FROM Msvm_ShutdownComponent WHERE SystemName='$vmname'"
+		$vmshut = gwmi -namespace root\virtualization\v2 -query "SELECT * FROM Msvm_ShutdownComponent WHERE SystemName='$vmname'"
 		$result = $vmshut.InitiateShutdown("$true","no comment")
 		if ($result.returnvalue -match "0") {
 			start-sleep -s $waitshutdown
